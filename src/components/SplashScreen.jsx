@@ -2,32 +2,45 @@ import { useEffect, useState } from 'react';
 import logo from '../assets/logo.png';
 
 const SplashScreen = ({ onFinish }) => {
-  const [isClosing, setIsClosing] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [showLogo, setShowLogo] = useState(true);
 
   useEffect(() => {
-    // Mostrar el splash screen por 2.5 segundos
+    // Mostrar con fade in
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    // Ocultar después de 2.5 segundos
     const timer = setTimeout(() => {
-      setIsClosing(true);
+      setIsVisible(false);
       
-      // Esperar a que termine la animación de fade out
+      // Esperar a que termine la animación antes de continuar
       setTimeout(() => {
         if (onFinish) onFinish();
-      }, 500); // 500ms para la animación de fade out
+      }, 800);
     }, 2500);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
 
   return (
-    <div className={`fixed inset-0 bg-dark flex items-center justify-center z-50 ${isClosing ? 'animate-fade-out' : 'animate-fade-in'}`}>
+    <div 
+      className="fixed inset-0 bg-dark flex items-center justify-center z-50"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 800ms ease-in-out',
+        pointerEvents: isVisible ? 'auto' : 'none'
+      }}
+    >
       <div className="flex flex-col items-center">
-        <img 
-          src={logo} 
-          alt="Crypto Force Logo" 
-          className="w-64 h-auto mb-6"
-        />
-        <h1 className="text-3xl font-bold text-primary mb-2 font-inter">Crypto Force</h1>
-        <p className="text-light text-xl font-inter">Trading Team | Criptomonedas e Inversiones</p>
+        {showLogo && (
+          <img 
+            src={logo} 
+            alt="Crypto Force Logo" 
+            className="w-96 h-auto"
+          />
+        )}
       </div>
     </div>
   );
