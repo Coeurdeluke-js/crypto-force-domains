@@ -24,7 +24,7 @@ const DomainModal = ({ domain, onClose, onMoreDetails }) => {
         return (
           <>
             <h2 className="text-2xl font-bold text-primary mb-4 text-center">
-              <span className="mr-2">🧍</span>
+              <span className="mr-2"></span>
               {domain.icon && (
                 <img 
                   src={`/src/assets/icons/${domain.icon}`} 

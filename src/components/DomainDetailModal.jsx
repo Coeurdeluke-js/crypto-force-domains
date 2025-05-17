@@ -133,7 +133,7 @@ const DomainDetailModal = ({ domain, onClose }) => {
         {/* Se ha eliminado el botón X de cierre */}
         
         <h2 className="text-2xl font-bold text-primary mb-4 text-center">
-          {domain.icon && (
+          {domain.icon && domain.name !== "Usuarios" && (
             <img 
               src={`/src/assets/icons/${domain.icon}`} 
               alt={domain.name} 
