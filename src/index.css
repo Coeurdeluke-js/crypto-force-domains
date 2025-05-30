@@ -8,15 +8,20 @@
   }
 }
 
+/* Eliminar media queries específicas para dispositivos y usar estilos dinámicos */
 @layer components {
   .orbit-container {
-    @apply relative w-full max-w-[600px] h-[600px] mx-auto my-10;
+    @apply relative mx-auto my-10;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 1/1;
   }
   
   .orbit {
     @apply w-full h-full rounded-full relative;
   }
   
+  /* Estilos base para la animación del latido */
   @keyframes heartbeat {
     0% {
       transform: scale(1) translate(-50%, -50%);
@@ -55,8 +60,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -64,20 +67,53 @@
     background-color: #ec4d58;
     color: white;
     font-weight: bold;
-    font-size: 1.25rem;
     cursor: pointer;
     z-index: 20;
     text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
     animation: heartbeat 4s ease-in-out infinite;
     transform-origin: center center;
+    text-align: center;
+    padding: 0;
+    line-height: 1;
   }
   
+  /* Estilos generales para dispositivos móviles */
+  @media (max-width: 768px) {
+    header {
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    
+    header h1 {
+      font-size: 1.5rem !important;
+    }
+    
+    header p {
+      font-size: 0.9rem !important;
+    }
+    
+    .modal-content {
+      max-width: 95% !important;
+      padding: 1rem !important;
+      margin: 0.5rem !important;
+    }
+    
+    footer {
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      background-color: rgba(18, 18, 18, 0.9) !important;
+      padding: 0.5rem 0 !important;
+      z-index: 30 !important;
+    }
+  }
+  
+  /* Eliminar las media queries específicas para dispositivos */
   .domain {
     @apply absolute rounded-full flex items-center justify-center 
            cursor-pointer transition-all duration-300 z-10
            hover:scale-110 hover:shadow-lg;
-    width: 7rem;
-    height: 7rem;
     border: 1px solid rgba(236, 77, 88, 0.3);
   }
   
@@ -158,24 +194,9 @@
   /* Estilos para dispositivos móviles */
   @media (max-width: 768px) {
     .orbit-container {
-      transform: scale(0.8) !important;
-      height: 90vh !important;
-      max-height: 600px !important;
-      width: 100% !important;
+      margin: 0 auto !important;
+      transform: none !important;
       overflow: visible !important;
-      margin-top: -30px !important;
-    }
-    
-    .domain {
-      font-size: 0.75rem !important;
-      width: 5rem !important;
-      height: 5rem !important;
-    }
-    
-    .center-force {
-      width: 90px !important;
-      height: 90px !important;
-      font-size: 0.9rem !important;
     }
     
     header {
@@ -192,8 +213,9 @@
     }
     
     .modal-content {
-      max-width: 90% !important;
+      max-width: 95% !important;
       padding: 1rem !important;
+      margin: 0.5rem !important;
     }
     
     footer {
@@ -201,39 +223,19 @@
       bottom: 0 !important;
       left: 0 !important;
       right: 0 !important;
-      padding: 0.25rem 0 !important;
-      font-size: 0.7rem !important;
-      background-color: rgba(0, 0, 0, 0.7) !important;
+      background-color: rgba(18, 18, 18, 0.9) !important;
+      padding: 0.5rem 0 !important;
       z-index: 30 !important;
-    }
-    
-    .min-h-screen {
-      min-height: 100vh !important;
-      height: 100vh !important;
-      overflow: hidden !important;
     }
   }
   
   @media (max-width: 480px) {
-    .orbit-container {
-      transform: scale(0.7) !important;
-      margin-top: -50px !important;
-    }
-    
-    .domain {
-      width: 4.5rem !important;
-      height: 4.5rem !important;
-      font-size: 0.7rem !important;
-    }
-    
-    .center-force {
-      width: 80px !important;
-      height: 80px !important;
-      font-size: 0.85rem !important;
-    }
-    
     header h1 {
-      font-size: 1.3rem !important;
+      font-size: 1.2rem !important;
+    }
+    
+    .modal-content {
+      padding: 0.75rem !important;
     }
   }
   
@@ -309,4 +311,127 @@
 
 .domain.flipped .domain-name {
   transform: rotateY(0deg);
+}
+
+/* Estilos específicos para Samsung Galaxy A51/71 y dispositivos similares */
+@media screen and (max-width: 412px) and (min-height: 914px) {
+  .orbit-container {
+    transform: scale(0.85) !important;
+    margin-top: 50px !important;
+  }
+  
+  .domain {
+    width: 65px !important;
+    height: 65px !important;
+  }
+  
+  .center-force {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  
+  .domain-text {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Estilos específicos para Pixel 7 y dispositivos similares */
+@media screen and (width: 412px), 
+       screen and (width: 413px), 
+       screen and (width: 414px) {
+  .orbit-container {
+    transform: scale(0.8) !important;
+    margin: 50px auto !important;
+    position: relative !important;
+    height: 500px !important;
+  }
+  
+  .orbit {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  .center-force {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90px !important;
+    height: 90px !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1 !important;
+  }
+  
+  .domain {
+    width: 65px !important;
+    height: 65px !important;
+  }
+  
+  .domain-text {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Animaciones para los dominios y La Fuerza */
+@keyframes pulse-1 {
+  0% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+
+@keyframes pulse-2 {
+  0% { opacity: 0.8; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.05); }
+  80% { opacity: 0.8; transform: scale(1); }
+}
+
+@keyframes pulse-3 {
+  0% { opacity: 0.8; transform: scale(1); }
+  30% { opacity: 1; transform: scale(1.05); }
+  60% { opacity: 0.8; transform: scale(1); }
+}
+
+@keyframes pulse-4 {
+  0% { opacity: 0.8; transform: scale(1); }
+  60% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.8; transform: scale(1); }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.02); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.04); }
+  60% { transform: scale(1); }
+}
+
+.pulse-1 .domain-circle {
+  animation: pulse-1 4s infinite ease-in-out;
+}
+
+.pulse-2 .domain-circle {
+  animation: pulse-2 5s infinite ease-in-out;
+}
+
+.pulse-3 .domain-circle {
+  animation: pulse-3 6s infinite ease-in-out;
+}
+
+.pulse-4 .domain-circle {
+  animation: pulse-4 7s infinite ease-in-out;
+}
+
+.force-circle {
+  animation: heartbeat 4s infinite ease-in-out;
+}
+
+/* Estilos para el SVG */
+.orbit-svg {
+  display: block;
+  margin: 0 auto;
 }

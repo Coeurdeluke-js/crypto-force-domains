@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Domain = ({ domain, position, onClick, pulseClass }) => {
+const Domain = ({ domain, position, onClick, pulseClass, size }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   
   // Función para manejar el texto de Comunidad/DAO
@@ -44,32 +44,46 @@ const Domain = ({ domain, position, onClick, pulseClass }) => {
     }, 800); // Delay suficiente para leer el nombre
   };
 
+  // Calcular tamaño de fuente proporcional al tamaño del dominio
+  const fontSize = size * 0.14; // 14% del tamaño del dominio
+
   return (
     <div
       className={`domain ${pulseClass} ${isFlipped ? 'flipped' : ''}`}
       style={{
         left: position.x,
         top: position.y,
+        width: `${size}px`,
+        height: `${size}px`,
         boxShadow: '0 0 10px rgba(236, 77, 88, 0.4)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        fontSize: domain.name === "Comunidad / DAO" ? '0.85rem' : '0.9rem'
+        position: 'absolute',
+        borderRadius: '50%'
       }}
       onClick={handleClick}
     >
-      <div className="domain-icon">
+      <div className="domain-icon" style={{ width: '100%', height: '100%' }}>
         {domain.icon && (
           <img 
-            src={`/src/assets/icons/${domain.icon}`} 
+            src={`/icons/${domain.icon}`} 
             alt={domain.name}
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+            style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '15%' }} 
           />
         )}
       </div>
-      <div className="domain-name">
-        <div className="domain-text">
+      <div className="domain-name" style={{ width: '100%', height: '100%' }}>
+        <div 
+          className="domain-text" 
+          style={{ 
+            fontSize: `${fontSize}px`,
+            fontWeight: 'bold',
+            textShadow: '0 0 5px rgba(0, 0, 0, 0.9)',
+            padding: '0 4px'
+          }}
+        >
           {formatDomainName(domain.name)}
         </div>
       </div>

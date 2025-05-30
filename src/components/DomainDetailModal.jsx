@@ -135,7 +135,7 @@ const DomainDetailModal = ({ domain, onClose }) => {
         <h2 className="text-2xl font-bold text-primary mb-4 text-center">
           {domain.icon && domain.name !== "Usuarios" && (
             <img 
-              src={`/src/assets/icons/${domain.icon}`} 
+              src={`./icons/${domain.icon}`} 
               alt={domain.name} 
               className="inline-block mr-2" 
               style={{ width: '24px', height: '24px', verticalAlign: 'middle' }} 

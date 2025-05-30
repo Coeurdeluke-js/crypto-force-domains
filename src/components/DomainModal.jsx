@@ -27,7 +27,7 @@ const DomainModal = ({ domain, onClose, onMoreDetails }) => {
               <span className="mr-2"></span>
               {domain.icon && (
                 <img 
-                  src={`/src/assets/icons/${domain.icon}`} 
+                  src={`/icons/${domain.icon}`} 
                   alt={domain.name} 
                   className="inline-block mr-3" 
                   style={{ width: '32px', height: '32px', verticalAlign: 'middle' }} 
