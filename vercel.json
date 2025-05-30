@@ -1,14 +1,6 @@
 {
-  "version": 2,
-  "framework": "vite",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "cleanUrls": true,
-  "public": true,
-  "rewrites": [
-    { 
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "rewrites": [{
+    "source": "/(.*)",
+    "destination": "/index.html"
+  }]
 }
